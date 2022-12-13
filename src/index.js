@@ -1,4 +1,5 @@
 import { fetchImages } from './fetchImages';
+import axios from 'axios';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -15,8 +16,8 @@ btnLoadMore.style.display = 'none';
 
 searchButton.addEventListener('click', e => {
   e.preventDefault();
+  cleanGallery();
   const value = input.value.trim();
-
   if (value !== '') {
     fetchImages(value, pageNumber).then(foundData => {
       if (foundData.hits.length === 0) {
